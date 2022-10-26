@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Голосовой помощник</string>
+    <string name="title_clear">Очистка</string>
+    <string name="title_stop">Стоп</string>
+    <string name="title_voice">Запись</string>
+    <string name="hint">Ввод</string>
+</resources>

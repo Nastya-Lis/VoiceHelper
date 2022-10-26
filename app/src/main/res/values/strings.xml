@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">VoiceHelper</string>
+    <string name="title_clear">Clear</string>
+    <string name="title_stop">Stop</string>
+    <string name="title_voice">Voice</string>
+    <string name="hint">Enter</string>
+</resources>
