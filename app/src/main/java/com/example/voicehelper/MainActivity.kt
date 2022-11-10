@@ -15,6 +15,7 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.SimpleAdapter
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -74,7 +75,8 @@ class MainActivity : AppCompatActivity() {
 
             kotlin.runCatching {
                 if(stateTTS){
-                    startActivityForResult(intent,code.CODE_FOR_ACTIVITY)
+                    receiverIntentRequest.launch(intent)
+                    //startActivityForResult(intent,code.CODE_FOR_ACTIVITY)
                 }
             }.onFailure {
                     fault -> snackBarShow(fault.message ?: R.string.voice_answer.toString())
@@ -111,13 +113,23 @@ class MainActivity : AppCompatActivity() {
         listPods.adapter = podsAdapter
     }
 
+    private val receiverIntentRequest = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()){
+        if(it.resultCode == Activity.RESULT_OK){
+            it.data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)?.let{
+                question ->
+                editTextView.setText(question)
+                queryWA(question)
+            }
+        }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode == code.CODE_FOR_ACTIVITY && resultCode == Activity.RESULT_OK){
-            val question = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0).toString()
-            editTextView.setText(question)
-            queryWA(question)
+            val question = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)?.get(0)
+                editTextView.setText(question)
+                queryWA(question.toString())
         }
     }
 
