@@ -4,4 +4,7 @@
     <string name="title_stop">Stop</string>
     <string name="title_voice">Voice</string>
     <string name="hint">Enter</string>
+    <string name="fatal_query_error">Query went wrong</string>
+    <string name="error_query">Error don\'t understand</string>
+    <string name="voice_answer">something went wrong in query</string>
 </resources>

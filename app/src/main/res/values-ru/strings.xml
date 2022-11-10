@@ -4,4 +4,7 @@
     <string name="title_stop">Стоп</string>
     <string name="title_voice">Запись</string>
     <string name="hint">Ввод</string>
+    <string name="fatal_query_error">произошла ошибка</string>
+    <string name="error_query">неясный запрос</string>
+    <string name="voice_answer">ошибочный код запроса</string>
 </resources>
